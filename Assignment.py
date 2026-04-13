@@ -49,8 +49,8 @@ class StreamService:
         for k, v in self.options.items():
             print(f"{k}. {v}")
 
-    def __formatted_print_song(self, song):
-        print(f"{song.title} by {song.artist.name}")
+    def __get_formatted_songname(self, song):
+        return f"{song.title} by {song.artist.name}"
 
     def __player(self, song_id):
         song = self.find_song_by_id(song_id)
@@ -63,7 +63,7 @@ class StreamService:
                 last_shown = time.perf_counter()
                 time_played += 1
                 os.system("cls" if os.name == "nt" else "clear")
-                print(f"You are now listening {song.title} by {song.artist.name}.")
+                print(f"You are now listening {self.__get_formatted_songname(song)}.")
                 print(time_played)
                 print("Press q to stop playing.")
             if keyboard.is_pressed("q"):
@@ -101,7 +101,8 @@ class StreamService:
         else:
             for i in range(1, len(result) + 1):
                 print(i, end=". ")
-                self.__formatted_print_song(result[i])
+                print(self.__get_formatted_songname(result[i]))
+
             selection = input("Select one song to play or press 'r' to return.")
 
         song = result.get(int(selection))
