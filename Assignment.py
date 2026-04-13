@@ -1,6 +1,6 @@
 import os
 import time
-
+import keyboard
 
 
 class Artist:
@@ -53,28 +53,21 @@ class StreamService:
         print(f"{song.title} by {song.artist.name}")
 
     def __player(self, song_id):
-        # song = self.find_song_by_id(song_id)
-        # time_elapsed = 0
-        # played_time = 0
-        # self.start()
-        # while played_time < song.duration:
-        #     time_elapsed = time_elapsed + self.re_get_time()
-        #     while time_elapsed >= 1:
-        #         played_time += 1
-        #         time_elapsed -= 1
-        #         # os.system("cls" if os.name == "nt" else "clear")
-        #         print(played_time)
         song = self.find_song_by_id(song_id)
-
-        start_time = time.perf_counter()
-        last_shown = 0
-
-        while last_shown < song.duration:
-            current = int(time.perf_counter() - start_time)
-
-            if current > last_shown:
-                last_shown = current
-                print(last_shown)
+        time_played = 0
+        last_shown = time.perf_counter()
+        while True:
+            time_elapsed = time.perf_counter() - last_shown
+            while time_elapsed >= 1:
+                time_elapsed -= 1
+                last_shown = time.perf_counter()
+                time_played += 1
+                os.system("cls" if os.name == "nt" else "clear")
+                print(f"You are now listening {song.title} by {song.artist.name}.")
+                print(time_played)
+                print("Press q to stop playing.")
+            if keyboard.is_pressed("q"):
+                break
 
     def __find_song(self, artist=None, keyword=None):
         result = {}
