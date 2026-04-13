@@ -52,6 +52,20 @@ class StreamService:
     def __get_formatted_songname(self, song):
         return f"{song.title} by {song.artist.name}"
 
+    def __get_formatted_playetime(self, time_played):
+        s = time_played % 60
+        m = (time_played // 60) % 60
+        h = (time_played // 60) // 60
+
+        if s < 10:
+            s = "0" + str(s)
+        if m < 10:
+            m = "0" + str(m)
+        if h < 10:
+            h = "0" + str(h)
+
+        return f"{h}, {m}, {s}"
+
     def __player(self, song_id):
         song = self.find_song_by_id(song_id)
         time_played = 0
@@ -64,9 +78,13 @@ class StreamService:
                 time_played += 1
                 os.system("cls" if os.name == "nt" else "clear")
                 print(f"You are now listening {self.__get_formatted_songname(song)}.")
-                print(time_played)
+                print(
+                    f"{self.__get_formatted_playetime(time_played)} / {self.__get_formatted_playetime(song.duration)}"
+                )
                 print("Press q to stop playing.")
             if keyboard.is_pressed("q"):
+                break
+            if time_played > song.duration:
                 break
 
     def __find_song(self, artist=None, keyword=None):
