@@ -60,8 +60,7 @@ class StreamService:
             self.__add_new_song(Song(song, singer))
 
     def __add_new_song(self, song):
-        if song not in self.songs:
-            self.songs.append(song)
+        self.songs.append(song)
 
     def __main_menu(self):
         os.system("cls" if os.name == "nt" else "clear")
@@ -141,8 +140,10 @@ class StreamService:
 
     def view_all_artists(self):
         os.system("cls" if os.name == "nt" else "clear")
+        index = 1
         for i in self.artists:
-            print(i.name)
+            print(f"{index}. {i.name}")
+            index += 1
 
     def __songs_by_title(self):
         os.system("cls" if os.name == "nt" else "clear")
