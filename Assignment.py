@@ -1,6 +1,7 @@
 import os
 import time
 import keyboard
+import json
 
 
 class Artist:
@@ -15,17 +16,15 @@ class Artist:
 class Song:
     number_of_songs = 0
 
-    def __init__(self, title, duration, genre, artist=None):
-        self.title = title
-        if not isinstance(duration, int):
-            raise TypeError("duration must be integer.")
-        self.duration = duration
-        self.genre = genre
+    def __init__(self, song, artist):
+        self.title = song["title"]
+        self.duration = song["duration"]
+        self.genre = song["genre"]
+        self.avg_rating = song["avg_rating"]
+        self.rating_num = song["rating_num"]
         Song.number_of_songs += 1
         self.id = self.number_of_songs
-        if artist != None:
-            artist.add_song(self.title)
-            self.artist = artist
+        self.artist = artist
 
 
 class StreamService:
@@ -36,8 +35,29 @@ class StreamService:
             "3": "Browse all songs.",
         }
         self.songs = []
-        self.__add_new_song(Song("Hello world", 180, "Pop", Artist("Kevin")))
-        self.__add_new_song(Song("Hello world", 160, "Classic", Artist("Thea")))
+        self.artists = []
+        self.__load_songs()
+
+    def __load_songs(self):
+        with open("songs.json", "r") as file:
+            data = json.load(file)
+        for song in data:
+            singer = None
+            if song["artist"] != None:
+                creatd = False
+                for a in self.artists:
+                    if a.name == song["artist"]:
+                        a.add_song(song["title"])
+                        creatd = True
+                        singer = a
+                        break
+                if creatd == False:
+                    artist = Artist(song["artist"])
+                    artist.add_song(song["title"])
+                    self.artists.append(artist)
+                    singer = artist
+
+            self.__add_new_song(Song(song, singer))
 
     def __add_new_song(self, song):
         if song not in self.songs:
@@ -50,7 +70,12 @@ class StreamService:
             print(f"{k}. {v}")
 
     def __get_formatted_songname(self, song):
-        return f"{song.title} by {song.artist.name}"
+        name = None
+        if song.artist.name == "":
+            name = "anonymous"
+        else:
+            name = song.artist.name
+        return f"{song.title} by {name}"
 
     def __get_formatted_playetime(self, time_played):
         s = time_played % 60
@@ -107,6 +132,18 @@ class StreamService:
             if s.id == id:
                 return s
 
+    def __list_all_songs(self):
+        os.system("cls" if os.name == "nt" else "clear")
+        for i in range(1, len(self.songs) + 1):
+            print(i, end=". ")
+            print(self.__get_formatted_songname(self.songs[i - 1]))
+        input("")
+
+    def view_all_artists(self):
+        os.system("cls" if os.name == "nt" else "clear")
+        for i in self.artists:
+            print(i.name)
+
     def __songs_by_title(self):
         os.system("cls" if os.name == "nt" else "clear")
         print("Search by title.")
@@ -143,8 +180,10 @@ class StreamService:
             elif action == "2":
                 pass
             elif action == "3":
+                self.__list_all_songs()
+            elif action == "4":
                 pass
 
 
 ss = StreamService()
-ss.run_service()
+ss.view_all_artists()
