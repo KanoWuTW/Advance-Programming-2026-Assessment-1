@@ -29,6 +29,16 @@ class Song:
         self.id = self.number_of_songs
         self.artist = artist
 
+    def to_dict(self):
+        return {
+            "title": self.title,
+            "duration": self.duration,
+            "genre": self.genre,
+            "rating_num": self.rating_num,
+            "avg_rating": self.avg_rating if self.avg_rating is not None else "N/A",
+            "artist": self.artist.name if self.artist else None,
+        }
+
 
 class StreamService:
     def __init__(self):
@@ -77,7 +87,7 @@ class StreamService:
             name = "anonymous"
         else:
             name = song.artist.name
-        return f"{song.title} by {name}"
+        return f"{song.title} by {name} rating: {song.avg_rating} number of ratings: {song.rating_num}"
 
     def __get_formatted_playetime(self, time_played):
         s = time_played % 60
@@ -92,6 +102,14 @@ class StreamService:
             h = "0" + str(h)
 
         return f"{h}, {m}, {s}"
+
+    def __save_change(self):
+        data = []
+        for s in self.songs:
+            data.append(s.to_dict())
+
+        with open("songs.json", "w") as file:
+            json.dump(data, file, indent=2)
 
     def __rating(self, song):
         print("Would you like to give a rating for this song?")
@@ -114,6 +132,7 @@ class StreamService:
                     song.rating_num += 1
                     new_sum = old_sum + rating_given
                     song.avg_rating = round(new_sum / song.rating_num, 1)
+                    self.__save_change()
                     break
                 except:
                     print("Invalid input.")
