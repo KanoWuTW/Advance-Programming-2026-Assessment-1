@@ -1,0 +1,387 @@
+[
+  {
+    "title": "Shape of You",
+    "duration": 233,
+    "genre": "Pop",
+    "rating_num": 5,
+    "avg_rating": 5,
+    "artist": "Ed Sheeran"
+  },
+  {
+    "title": "Blinding Lights",
+    "duration": 200,
+    "genre": "Synth-pop",
+    "rating_num": 5,
+    "avg_rating": 5,
+    "artist": "The Weeknd"
+  },
+  {
+    "title": "Someone Like You",
+    "duration": 285,
+    "genre": "Soul",
+    "rating_num": 5,
+    "avg_rating": 4,
+    "artist": "Adele"
+  },
+
+  {
+    "title": "Perfect",
+    "duration": 263,
+    "genre": "Pop",
+    "rating_num": 10,
+    "avg_rating": 4.8,
+    "artist": "Ed Sheeran"
+  },
+  {
+    "title": "Starboy",
+    "duration": 230,
+    "genre": "R&B",
+    "rating_num": 8,
+    "avg_rating": 4.5,
+    "artist": "The Weeknd"
+  },
+  {
+    "title": "Hello",
+    "duration": 295,
+    "genre": "Soul",
+    "rating_num": 12,
+    "avg_rating": 4.7,
+    "artist": "Adele"
+  },
+  {
+    "title": "Bad Guy",
+    "duration": 194,
+    "genre": "Pop",
+    "rating_num": 6,
+    "avg_rating": 4.2,
+    "artist": "Billie Eilish"
+  },
+  {
+    "title": "Happier Than Ever",
+    "duration": 298,
+    "genre": "Alternative",
+    "rating_num": 4,
+    "avg_rating": 4.0,
+    "artist": "Billie Eilish"
+  },
+  {
+    "title": "Levitating",
+    "duration": 203,
+    "genre": "Disco-pop",
+    "rating_num": 7,
+    "avg_rating": 4.6,
+    "artist": "Dua Lipa"
+  },
+  {
+    "title": "New Rules",
+    "duration": 209,
+    "genre": "Pop",
+    "rating_num": 9,
+    "avg_rating": 4.3,
+    "artist": "Dua Lipa"
+  },
+  {
+    "title": "Peaches",
+    "duration": 198,
+    "genre": "R&B",
+    "rating_num": 3,
+    "avg_rating": 3.7,
+    "artist": "Justin Bieber"
+  },
+  {
+    "title": "Stay",
+    "duration": 141,
+    "genre": "Pop",
+    "rating_num": 11,
+    "avg_rating": 4.9,
+    "artist": "The Kid LAROI"
+  },
+  {
+    "title": "Sunflower",
+    "duration": 158,
+    "genre": "Hip-Hop",
+    "rating_num": 8,
+    "avg_rating": 4.4,
+    "artist": "Post Malone"
+  },
+  {
+    "title": "Circles",
+    "duration": 215,
+    "genre": "Pop",
+    "rating_num": 6,
+    "avg_rating": 4.1,
+    "artist": "Post Malone"
+  },
+  {
+    "title": "Rockstar",
+    "duration": 218,
+    "genre": "Hip-Hop",
+    "rating_num": 5,
+    "avg_rating": 4.0,
+    "artist": "Post Malone"
+  },
+  {
+    "title": "Watermelon Sugar",
+    "duration": 174,
+    "genre": "Pop",
+    "rating_num": 7,
+    "avg_rating": 4.5,
+    "artist": "Harry Styles"
+  },
+  {
+    "title": "As It Was",
+    "duration": 167,
+    "genre": "Pop",
+    "rating_num": 10,
+    "avg_rating": 4.8,
+    "artist": "Harry Styles"
+  },
+  {
+    "title": "Rolling in the Deep",
+    "duration": 228,
+    "genre": "Soul",
+    "rating_num": 9,
+    "avg_rating": 4.6,
+    "artist": "Adele"
+  },
+  {
+    "title": "Set Fire to the Rain",
+    "duration": 242,
+    "genre": "Soul",
+    "rating_num": 8,
+    "avg_rating": 4.4,
+    "artist": "Adele"
+  },
+  {
+    "title": "Thinking Out Loud",
+    "duration": 281,
+    "genre": "Pop",
+    "rating_num": 12,
+    "avg_rating": 4.9,
+    "artist": "Ed Sheeran"
+  },
+  {
+    "title": "Photograph",
+    "duration": 258,
+    "genre": "Pop",
+    "rating_num": 5,
+    "avg_rating": 4.3,
+    "artist": "Ed Sheeran"
+  },
+  {
+    "title": "Lose Yourself",
+    "duration": 326,
+    "genre": "Hip-Hop",
+    "rating_num": 15,
+    "avg_rating": 5,
+    "artist": "Eminem"
+  },
+  {
+    "title": "Godzilla",
+    "duration": 210,
+    "genre": "Hip-Hop",
+    "rating_num": 6,
+    "avg_rating": 4.2,
+    "artist": "Eminem"
+  },
+  {
+    "title": "Without Me",
+    "duration": 290,
+    "genre": "Hip-Hop",
+    "rating_num": 10,
+    "avg_rating": 4.7,
+    "artist": "Eminem"
+  },
+  {
+    "title": "Numb",
+    "duration": 185,
+    "genre": "Rock",
+    "rating_num": 11,
+    "avg_rating": 4.8,
+    "artist": "Linkin Park"
+  },
+  {
+    "title": "In the End",
+    "duration": 216,
+    "genre": "Rock",
+    "rating_num": 13,
+    "avg_rating": 4.9,
+    "artist": "Linkin Park"
+  },
+  {
+    "title": "Faint",
+    "duration": 162,
+    "genre": "Rock",
+    "rating_num": 4,
+    "avg_rating": 4.1,
+    "artist": "Linkin Park"
+  },
+  {
+    "title": "Believer",
+    "duration": 204,
+    "genre": "Alternative Rock",
+    "rating_num": 9,
+    "avg_rating": 4.6,
+    "artist": "Imagine Dragons"
+  },
+  {
+    "title": "Demons",
+    "duration": 177,
+    "genre": "Alternative Rock",
+    "rating_num": 6,
+    "avg_rating": 4.3,
+    "artist": "Imagine Dragons"
+  },
+  {
+    "title": "Radioactive",
+    "duration": 186,
+    "genre": "Alternative Rock",
+    "rating_num": 8,
+    "avg_rating": 4.5,
+    "artist": "Imagine Dragons"
+  },
+  {
+    "title": "Counting Stars",
+    "duration": 257,
+    "genre": "Pop",
+    "rating_num": 10,
+    "avg_rating": 4.7,
+    "artist": "OneRepublic"
+  },
+  {
+    "title": "Apologize",
+    "duration": 204,
+    "genre": "Pop",
+    "rating_num": 7,
+    "avg_rating": 4.2,
+    "artist": "OneRepublic"
+  },
+  {
+    "title": "Senorita",
+    "duration": 191,
+    "genre": "Pop",
+    "rating_num": 5,
+    "avg_rating": 4.0,
+    "artist": "Shawn Mendes"
+  },
+  {
+    "title": "Stitches",
+    "duration": 207,
+    "genre": "Pop",
+    "rating_num": 6,
+    "avg_rating": 4.1,
+    "artist": "Shawn Mendes"
+  },
+  {
+    "title": "Let Me Love You",
+    "duration": 205,
+    "genre": "Dance",
+    "rating_num": 4,
+    "avg_rating": 3.9,
+    "artist": "DJ Snake"
+  },
+  {
+    "title": "Closer",
+    "duration": 244,
+    "genre": "EDM",
+    "rating_num": 12,
+    "avg_rating": 4.6,
+    "artist": "The Chainsmokers"
+  },
+  {
+    "title": "Something Just Like This",
+    "duration": 247,
+    "genre": "EDM",
+    "rating_num": 9,
+    "avg_rating": 4.4,
+    "artist": "The Chainsmokers"
+  },
+  {
+    "title": "Memories",
+    "duration": 189,
+    "genre": "Pop",
+    "rating_num": 3,
+    "avg_rating": "N/A",
+    "artist": "Maroon 5"
+  },
+  {
+    "title": "Sugar",
+    "duration": 235,
+    "genre": "Pop",
+    "rating_num": 8,
+    "avg_rating": 4.3,
+    "artist": "Maroon 5"
+  },
+  {
+    "title": "Girls Like You",
+    "duration": 235,
+    "genre": "Pop",
+    "rating_num": 6,
+    "avg_rating": 4.0,
+    "artist": "Maroon 5"
+  },
+  {
+    "title": "Havana",
+    "duration": 217,
+    "genre": "Latin Pop",
+    "rating_num": 7,
+    "avg_rating": 4.5,
+    "artist": "Camila Cabello"
+  },
+  {
+    "title": "Liar",
+    "duration": 207,
+    "genre": "Pop",
+    "rating_num": 4,
+    "avg_rating": 3.8,
+    "artist": "Camila Cabello"
+  },
+  {
+    "title": "Despacito",
+    "duration": 229,
+    "genre": "Reggaeton",
+    "rating_num": 15,
+    "avg_rating": 5,
+    "artist": "Luis Fonsi"
+  },
+  {
+    "title": "Perfect Illusion",
+    "duration": 184,
+    "genre": "Pop",
+    "rating_num": 2,
+    "avg_rating": "N/A",
+    "artist": "Lady Gaga"
+  },
+  {
+    "title": "Poker Face",
+    "duration": 238,
+    "genre": "Pop",
+    "rating_num": 10,
+    "avg_rating": 4.6,
+    "artist": "Lady Gaga"
+  },
+  {
+    "title": "Bad Romance",
+    "duration": 295,
+    "genre": "Pop",
+    "rating_num": 11,
+    "avg_rating": 4.8,
+    "artist": "Lady Gaga"
+  },
+  {
+    "title": "Auld Lang Syne",
+    "duration": 155,
+    "genre": "ballad",
+    "rating_num": 0,
+    "avg_rating": "N/A",
+    "artist": null
+  },
+  {
+    "title": "Greensleeves",
+    "duration": 201,
+    "genre": "ballad",
+    "rating_num": 0,
+    "avg_rating": "N/A",
+    "artist": null
+  }
+]
