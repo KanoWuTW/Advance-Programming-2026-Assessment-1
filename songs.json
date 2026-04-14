@@ -23,7 +23,6 @@
     "avg_rating": 4,
     "artist": "Adele"
   },
-
   {
     "title": "Perfect",
     "duration": 263,
@@ -380,8 +379,8 @@
     "title": "Greensleeves",
     "duration": 201,
     "genre": "ballad",
-    "rating_num": 0,
-    "avg_rating": "N/A",
+    "rating_num": 3,
+    "avg_rating": 2.7,
     "artist": null
   }
 ]
