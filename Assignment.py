@@ -70,7 +70,7 @@ class StreamService:
 
     def __get_formatted_songname(self, song):
         name = None
-        if song.artist.name == "":
+        if song.artist == None:
             name = "anonymous"
         else:
             name = song.artist.name
@@ -133,12 +133,23 @@ class StreamService:
 
     def __list_all_songs(self):
         os.system("cls" if os.name == "nt" else "clear")
+        print("All songs:\n")
         for i in range(1, len(self.songs) + 1):
             print(i, end=". ")
             print(self.__get_formatted_songname(self.songs[i - 1]))
-        input("")
 
-    def view_all_artists(self):
+        while True:
+            inp = input("\nSelect one song and play or press q to return.")
+            if inp == "q" or inp == "Q":
+                break
+            else:
+                try:
+                    self.__player(self.songs[int(inp) - 1].id)
+                    break
+                except:
+                    print("Invalid input.")
+
+    def __view_all_artists(self):
         os.system("cls" if os.name == "nt" else "clear")
         index = 1
         for i in self.artists:
@@ -159,10 +170,16 @@ class StreamService:
                 print(i, end=". ")
                 print(self.__get_formatted_songname(result[i]))
 
-            selection = input("Select one song to play or press 'r' to return.")
-
-        song = result.get(int(selection))
-        self.__player(song.id)
+            while True:
+                selection = input("Select one song to play or press 'q' to return.")
+                if selection == "q" or selection == "Q":
+                    return
+                else:
+                    try:
+                        song = result.get(int(selection))
+                        self.__player(song.id)
+                    except:
+                        print("Invalid input.")
 
     def run_service(self):
         while True:
@@ -187,4 +204,4 @@ class StreamService:
 
 
 ss = StreamService()
-ss.view_all_artists()
+ss.run_service()
