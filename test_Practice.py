@@ -1,36 +1,30 @@
 import unittest
-from practical import Ticket, StudentTicket, Booking
+from Assignment import StreamService
 
 
-class TestGetPrice(unittest.TestCase):
-    def test_1(self):
+class TestRatingSys(unittest.TestCase):
+    def test_shape_of_you(self):
         # setup
-        t1 = Ticket("film1", 5)
+        ss = StreamService()
         # Act
-        result = t1.get_price()
-        # Assert
-        self.assertEqual(result, 5)
+        ss._StreamService__rating(ss.find_song_by_id(1))
+        new_avg_rating, new_rating_num = ss.get_rating_test(1)
 
-    def test_student(self):
+        # Assert
+        self.assertEqual(new_avg_rating, 4.7)
+        self.assertEqual(new_rating_num, 6)
+
+    def test_Godzilla(self):
         # setup
-        s1 = StudentTicket("film1", 5, 0.85)
+        ss = StreamService()
         # Act
-        result = s1.get_price()
+        ss._StreamService__rating(ss.find_song_by_id(23))
+        new_avg_rating, new_rating_num = ss.get_rating_test(23)
+
         # Assert
-        self.assertEqual(result, 4.25)
-
-    def test_booking(self):
-        # setup
-        book = Booking()
-        book.add_ticket(StudentTicket("film1", 5, 0.85))
-        book.add_ticket(Ticket("film1", 5))
-        # Act
-        cost = book.total_cost()
-        num = book.ticket_count()
-        # Assert
-        self.assertEqual(cost, 9.25)
-        self.assertEqual(num, 2)
+        self.assertEqual(new_avg_rating, 3.7)
+        self.assertEqual(new_rating_num, 7)
 
 
-if __name__ == "__main__":
-    unittest.main()
+# if __name__ == "__main__":
+#     unittest.main()
