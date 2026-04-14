@@ -20,7 +20,10 @@ class Song:
         self.title = song["title"]
         self.duration = song["duration"]
         self.genre = song["genre"]
-        self.avg_rating = song["avg_rating"]
+        if song["avg_rating"] == "N/A":
+            self.avg_rating = None
+        else:
+            self.avg_rating = song["avg_rating"]
         self.rating_num = song["rating_num"]
         Song.number_of_songs += 1
         self.id = self.number_of_songs
@@ -90,6 +93,31 @@ class StreamService:
 
         return f"{h}, {m}, {s}"
 
+    def __rating(self, song):
+        print("Would you like to give a rating for this song?")
+        while True:
+            inp = input("Please input 1~5 to rate this song or 'q' to return:")
+            if inp == "q" or inp == "Q":
+                return
+            else:
+                try:
+                    rating_given = int(inp)
+
+                    if rating_given > 5 or rating_given < 1:
+                        raise ValueError
+
+                    if song.avg_rating == None:
+                        old_av_rating = 0
+                    else:
+                        old_av_rating = song.avg_rating
+                    old_sum = old_av_rating * song.rating_num
+                    song.rating_num += 1
+                    new_sum = old_sum + rating_given
+                    song.avg_rating = round(new_sum / song.rating_num, 1)
+                    break
+                except:
+                    print("Invalid input.")
+
     def __player(self, song_id):
         song = self.find_song_by_id(song_id)
         time_played = 0
@@ -110,6 +138,7 @@ class StreamService:
                 break
             if time_played > song.duration:
                 break
+        self.__rating(song)
 
     def __find_song(self, artist=None, keyword=None):
         result = {}
