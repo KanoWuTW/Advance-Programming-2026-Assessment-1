@@ -275,6 +275,7 @@ class StreamService:
                     try:
                         song = result.get(int(selection))
                         self.__player(song.id)
+                        break
                     except:
                         print("Invalid input.")
 
