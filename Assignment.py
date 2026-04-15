@@ -88,7 +88,7 @@ class StreamService:
             name = "anonymous"
         else:
             name = song.artist.name
-        return f"{song.title} by {name} rating: {song.avg_rating} number of ratings: {song.rating_num}"
+        return f"{song.title} by {name} ---- Avergae Rating: {song.avg_rating}★ by {song.rating_num} users."
 
     def __get_formatted_playetime(self, time_played):
         s = time_played % 60
