@@ -217,9 +217,12 @@ class StreamService:
                     result[index] = s
                     index += 1
             else:
-                if s.title == keyword and s.artist.name == artist:
-                    result[index] = s
-                    index += 1
+                try:
+                    if s.artist.name == artist:
+                        result[index] = s
+                        index += 1
+                except:
+                    pass
 
         return result
 
@@ -252,6 +255,32 @@ class StreamService:
         for i in self.artists:
             print(f"{index}. {i.name}")
             index += 1
+
+    def __songs_by_artist(self):
+        os.system("cls" if os.name == "nt" else "clear")
+        print("Search by artist.")
+        artist = input("Artist name: ")
+        result = self.__find_song(artist=artist)
+        if result == {}:
+            print("Sorry, not matching songs has been found.")
+            selection = input("Press any key to return.")
+            return
+        else:
+            for i in range(1, len(result) + 1):
+                print(i, end=". ")
+                print(self.__get_formatted_songname(result[i]))
+
+            while True:
+                selection = input("Select one song to play or press 'q' to return.")
+                if selection == "q" or selection == "Q":
+                    return
+                else:
+                    try:
+                        song = result.get(int(selection))
+                        self.__player(song.id)
+                        break
+                    except:
+                        print("Invalid input.")
 
     def __songs_by_title(self):
         os.system("cls" if os.name == "nt" else "clear")
@@ -294,7 +323,7 @@ class StreamService:
             if action == "1":
                 self.__songs_by_title()
             elif action == "2":
-                pass
+                self.__songs_by_artist()
             elif action == "3":
                 self.__list_all_songs()
             elif action == "4":
