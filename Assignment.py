@@ -46,6 +46,7 @@ class StreamService:
             "1": "Search songs by title.",
             "2": "Search songs by artists.",
             "3": "Browse all songs.",
+            "4": "Quit application.",
         }
         self.songs = []
         self.artists = []
@@ -140,23 +141,71 @@ class StreamService:
     def __player(self, song_id):
         song = self.find_song_by_id(song_id)
         time_played = 0
-        last_shown = time.perf_counter()
-        while True:
-            time_elapsed = time.perf_counter() - last_shown
-            while time_elapsed >= 1:
-                time_elapsed -= 1
-                last_shown = time.perf_counter()
-                time_played += 1
-                os.system("cls" if os.name == "nt" else "clear")
-                print(f"You are now listening {self.__get_formatted_songname(song)}.")
-                print(
-                    f"{self.__get_formatted_playetime(time_played)} / {self.__get_formatted_playetime(song.duration)}"
-                )
-                print("Press q to stop playing.")
-            if keyboard.is_pressed("q"):
-                break
-            if time_played > song.duration:
-                break
+        play_speed = 4
+        speeds = [10, 8, 4, 2, 1, 0.5, 0.25, 0.125, 0.1]
+
+        update_rate = 4
+
+        def slower():
+            nonlocal update_rate
+            update_rate -= 1
+            nonlocal play_speed
+            play_speed -= 1
+            if play_speed < 0:
+                play_speed = 0
+            if update_rate < 4:
+                update_rate = 4
+
+        def faster():
+            nonlocal update_rate
+            update_rate += 1
+            nonlocal play_speed
+            play_speed += 1
+            if play_speed > 8:
+                play_speed = 8
+            if update_rate > 8:
+                update_rate = 8
+            if play_speed <= 4:
+                update_rate = 4
+
+        keyboard.on_release_key("left", lambda e: slower())
+        keyboard.on_release_key("right", lambda e: faster())
+
+        time_interval = 0
+        time_accumulation = 0
+        time_accumulation_b = 0
+        try:
+            while True:
+                time_point_a = time.perf_counter()
+                time_accumulation += time_interval
+                time_accumulation_b += time_interval
+                while time_accumulation >= speeds[update_rate]:
+                    os.system("cls" if os.name == "nt" else "clear")
+                    print(
+                        f"You are now listening {self.__get_formatted_songname(song)}."
+                    )
+                    print(
+                        f"{self.__get_formatted_playetime(time_played)} / {self.__get_formatted_playetime(song.duration)}"
+                    )
+                    print("Press q to stop playing.")
+                    print(
+                        f"Press left arrow key to slow downn or right arrow key to speed up. Current speed:{speeds[play_speed]}"
+                    )
+                    time_accumulation -= speeds[update_rate]
+                while time_accumulation_b >= speeds[play_speed]:
+                    time_played += 1
+                    time_accumulation_b -= speeds[play_speed]
+
+                if keyboard.is_pressed("q"):
+                    break
+
+                if time_played > song.duration:
+                    break
+                time_point_b = time.perf_counter()
+                time_interval = time_point_b - time_point_a
+        finally:
+            keyboard.unhook_all()
+
         self.__rating(song)
 
     def __find_song(self, artist=None, keyword=None):
@@ -248,7 +297,7 @@ class StreamService:
             elif action == "3":
                 self.__list_all_songs()
             elif action == "4":
-                pass
+                return
 
 
 ss = StreamService()
