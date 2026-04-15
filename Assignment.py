@@ -189,7 +189,7 @@ class StreamService:
                     )
                     print("Press q to stop playing.")
                     print(
-                        f"Press left arrow key to slow downn or right arrow key to speed up. Current speed:{speeds[play_speed]}"
+                        f"Press left arrow key to slow downn or right arrow key to speed up. Current speed: x{speeds[abs(play_speed-8)]}"
                     )
                     time_accumulation -= speeds[update_rate]
                 while time_accumulation_b >= speeds[play_speed]:
