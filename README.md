@@ -23,7 +23,7 @@ It loads songs from a JSON file, lets users search and browse songs, simulates s
 ## 3. Project Structure
 
 - `main.py`: service entry point and all CLI flow (`StreamService`).
-- `Song.py`: `Song` model and JSON serialization (`to_dict`).
+- `Song.py`: `Song` model and JSON serialisation (`to_dict`).
 - `Artist.py`: `Artist` model and artist-song association.
 - `songs.json`: song dataset (title, duration, genre, rating info, artist).
 
@@ -41,7 +41,7 @@ Fields:
 - `artist` (`Artist` object or `None`)
 - `id` (auto-incremented in runtime)
 
-Behavior:
+Behaviour:
 
 - `to_dict()` converts in-memory object back to JSON format.
 - If artist is missing, `artist` is saved as `null` in JSON.
@@ -53,7 +53,7 @@ Fields:
 - `name` (str)
 - private song list (`__songs`)
 
-Behavior:
+Behaviour:
 
 - `add_song(song_name)` keeps track of song titles by this artist.
 
@@ -79,7 +79,7 @@ Notes:
 
 ## 6. Runtime Flow (`main.py`)
 
-1. `StreamService` initializes.
+1. `StreamService` initialises.
 2. Songs are loaded from `songs.json`.
 3. Artist objects are reused by name to avoid duplicates.
 4. Main menu loops until user quits.
@@ -105,7 +105,7 @@ pip install -r requirements.txt
 python main.py
 ```
 
-## 8. Current Behaviors and Constraints
+## 8. Current Behaviours and Constraints
 
 - Search is exact-match (case and spacing matter).
 - Data persistence currently updates only rating fields back into JSON.
