@@ -111,7 +111,7 @@ class StreamService:
                     print("Invalid input.")
 
     def __player(self, song_id):
-        song = self.find_song_by_id(song_id)
+        song = self.__find_song_by_id(song_id)
         time_played = 0
         play_speed = 4
         speeds = [10, 8, 4, 2, 1, 0.5, 0.25, 0.125, 0.1]
@@ -208,7 +208,7 @@ class StreamService:
 
         return result
 
-    def find_song_by_id(self, id):
+    def __find_song_by_id(self, id):
         for s in self.songs:
             if s.id == id:
                 return s
@@ -230,13 +230,6 @@ class StreamService:
                     break
                 except:
                     print("Invalid input.")
-
-    def __view_all_artists(self):
-        os.system("cls" if os.name == "nt" else "clear")
-        index = 1
-        for i in self.artists:
-            print(f"{index}. {i.name}")
-            index += 1
 
     def __songs_by_artist(self):
         os.system("cls" if os.name == "nt" else "clear")
