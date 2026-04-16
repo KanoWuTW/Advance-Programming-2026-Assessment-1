@@ -382,5 +382,85 @@
     "rating_num": 3,
     "avg_rating": 2.7,
     "artist": null
+  },
+  {
+    "title": "Midnight Echo",
+    "duration": 212,
+    "genre": "Synthwave",
+    "rating_num": 0,
+    "avg_rating": "N/A",
+    "artist": "Nova Lane"
+  },
+  {
+    "title": "Paper Boats",
+    "duration": 188,
+    "genre": "Indie Pop",
+    "rating_num": 0,
+    "avg_rating": "N/A",
+    "artist": null
+  },
+  {
+    "title": "Neon Skyline",
+    "duration": 241,
+    "genre": "Electronic",
+    "rating_num": 0,
+    "avg_rating": "N/A",
+    "artist": "Echo Harbor"
+  },
+  {
+    "title": "Quiet Harbor",
+    "duration": 176,
+    "genre": "Acoustic",
+    "rating_num": 2,
+    "avg_rating": 4.0,
+    "artist": null
+  },
+  {
+    "title": "Cloud Atlas",
+    "duration": 259,
+    "genre": "Ambient",
+    "rating_num": 0,
+    "avg_rating": "N/A",
+    "artist": "Skylight Duo"
+  },
+  {
+    "title": "Crimson Tide",
+    "duration": 205,
+    "genre": "Alternative Rock",
+    "rating_num": 5,
+    "avg_rating": 3.8,
+    "artist": null
+  },
+  {
+    "title": "Velvet Rain",
+    "duration": 223,
+    "genre": "R&B",
+    "rating_num": 0,
+    "avg_rating": "N/A",
+    "artist": "Luna Vale"
+  },
+  {
+    "title": "Afterglow Drive",
+    "duration": 194,
+    "genre": "Pop",
+    "rating_num": 4,
+    "avg_rating": 4.1,
+    "artist": null
+  },
+  {
+    "title": "Silver Lines",
+    "duration": 231,
+    "genre": "Dream Pop",
+    "rating_num": 0,
+    "avg_rating": "N/A",
+    "artist": "Aurora Note"
+  },
+  {
+    "title": "Wanderlight",
+    "duration": 207,
+    "genre": "Folk",
+    "rating_num": 0,
+    "avg_rating": "N/A",
+    "artist": null
   }
 ]
