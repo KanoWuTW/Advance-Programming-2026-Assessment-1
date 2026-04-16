@@ -214,14 +214,24 @@ class StreamService:
     def __find_song(self, artist=None, keyword=None):
         result = {}
         index = 1
-        for s in self.songs:
-            if artist == None:
+
+        if artist == None and keyword != None:
+            for s in self.songs:
                 if s.title == keyword:
                     result[index] = s
                     index += 1
-            else:
+        elif artist != None and keyword == None:
+            for s in self.songs:
                 try:
                     if s.artist.name == artist:
+                        result[index] = s
+                        index += 1
+                except:
+                    pass
+        else:
+            for s in self.songs:
+                try:
+                    if s.artist.name == artist and s.title == keyword:
                         result[index] = s
                         index += 1
                 except:
@@ -261,7 +271,7 @@ class StreamService:
 
     def __songs_by_artist(self):
         os.system("cls" if os.name == "nt" else "clear")
-        print("Search by artist.")
+        print("🔍 Search by artist.")
         artist = input("Artist name: ")
         result = self.__find_song(artist=artist)
         if result == {}:
@@ -287,7 +297,7 @@ class StreamService:
 
     def __songs_by_title(self):
         os.system("cls" if os.name == "nt" else "clear")
-        print("Search by title.")
+        print("🔍 Search by title.")
         title = input("Title: ")
         result = self.__find_song(keyword=title)
         if result == {}:
@@ -311,10 +321,48 @@ class StreamService:
                     except:
                         print("Invalid input.")
 
+    def __preprocess(self, inp):
+        # remove space at the front and end of the string
+        inp = inp.strip()
+        song, _, artist = inp.partition(" by ")
+        if _ != " by ":
+            raise ValueError("The pattern is incorrect!")
+        return song, artist
+
     def __search(self):
-        print("🔍")
-        input()
-    
+        os.system("cls" if os.name == "nt" else "clear")
+        print("Please follow this pattern: <song> by <artist>")
+
+        while True:
+            try:
+                inp = input("🔍 Search:")
+                title, artist = self.__preprocess(inp)
+                break
+            except ValueError as e:
+                print(e)
+
+        result = self.__find_song(keyword=title, artist=artist)
+        if result == {}:
+            print("Sorry, not matching songs has been found.")
+            selection = input("Press any key to return.")
+            return
+        else:
+            for i in range(1, len(result) + 1):
+                print(i, end=". ")
+                print(self.__get_formatted_songname(result[i]))
+
+            while True:
+                selection = input("Select one song to play or press 'q' to return.")
+                if selection == "q" or selection == "Q":
+                    return
+                else:
+                    try:
+                        song = result.get(int(selection))
+                        self.__player(song.id)
+                        break
+                    except:
+                        print("Invalid input.")
+
     def run_service(self):
         while True:
             self.__main_menu()
