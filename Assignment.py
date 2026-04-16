@@ -40,10 +40,11 @@ class Song:
 class StreamService:
     def __init__(self):
         self.options = {
-            "1": "Search songs by title.",
-            "2": "Search songs by artists.",
-            "3": "Browse all songs.",
-            "4": "Quit application.",
+            "1": "Search",
+            "2": "Search songs by title.",
+            "3": "Search songs by artists.",
+            "4": "Browse all songs.",
+            "5": "Quit application.",
         }
         self.songs = []
         self.artists = []
@@ -189,7 +190,7 @@ class StreamService:
                     print(
                         f"{self.__get_formatted_playetime(time_played)} / {self.__get_formatted_playetime(song.duration)}"
                     )
-                    print("Press q to stop playing.")
+                    print("Press q to stop playing ⏹︎.")
                     print(
                         f"Press left arrow key to slow downn or right arrow key to speed up. Current speed: x{speeds[abs(play_speed-8)]}"
                     )
@@ -310,6 +311,10 @@ class StreamService:
                     except:
                         print("Invalid input.")
 
+    def __search(self):
+        print("🔍")
+        input()
+    
     def run_service(self):
         while True:
             self.__main_menu()
@@ -323,12 +328,14 @@ class StreamService:
             action = actions[i - 1]
 
             if action == "1":
-                self.__songs_by_title()
+                self.__search()
             elif action == "2":
-                self.__songs_by_artist()
+                self.__songs_by_title()
             elif action == "3":
-                self.__list_all_songs()
+                self.__songs_by_artist()
             elif action == "4":
+                self.__list_all_songs()
+            elif action == "5":
                 return
 
 
