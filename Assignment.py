@@ -20,10 +20,7 @@ class Song:
         self.title = song["title"]
         self.duration = song["duration"]
         self.genre = song["genre"]
-        if song["avg_rating"] == "N/A":
-            self.avg_rating = None
-        else:
-            self.avg_rating = song["avg_rating"]
+        self.avg_rating = song["avg_rating"]
         self.rating_num = song["rating_num"]
         Song.number_of_songs += 1
         self.id = self.number_of_songs
@@ -88,7 +85,12 @@ class StreamService:
             name = "anonymous"
         else:
             name = song.artist.name
-        return f"{song.title} by {name} ---- Avergae Rating: {song.avg_rating}★ by {song.rating_num} users."
+        rating = None
+        if song.avg_rating == "N/A":
+            rating = song.avg_rating
+        else:
+            rating = str(song.avg_rating) + " " + "★"
+        return f"{song.title} by {name} ---- Avergae Rating: {rating} by {song.rating_num} users."
 
     def __get_formatted_playetime(self, time_played):
         s = time_played % 60
