@@ -11,7 +11,7 @@ class StreamService:
         self.options = {
             "1": "Search",
             "2": "Search songs by title.",
-            "3": "Search songs by artists.",
+            "3": "Search songs by artist.",
             "4": "Browse all songs.",
             "5": "Quit application.",
         }
@@ -20,11 +20,13 @@ class StreamService:
         self.__load_songs()
 
     def __load_songs(self):
+        # Load the JSON data once at startup and rebuild both song and artist lists.
         with open("songs.json", "r") as file:
             data = json.load(file)
         for song in data:
             singer = None
             if song["artist"] != None:
+                # Reuse an existing artist object when the same artist appears multiple times.
                 creatd = False
                 for a in self.artists:
                     if a.name == song["artist"]:
@@ -45,7 +47,7 @@ class StreamService:
 
     def __main_menu(self):
         os.system("cls" if os.name == "nt" else "clear")
-        print("Welcome to music streaming service!")
+        print("Welcome to the music streaming service!")
         for k, v in self.options.items():
             print(f"{k}. {v}")
 
@@ -60,7 +62,7 @@ class StreamService:
             rating = song.avg_rating
         else:
             rating = str(song.avg_rating) + " " + "★"
-        return f"{song.title} by {name} ---- Avergae Rating: {rating} by {song.rating_num} users."
+        return f"{song.title} by {name} ---- Average Rating: {rating} by {song.rating_num} users."
 
     def __get_formatted_playetime(self, time_played):
         s = time_played % 60
@@ -92,11 +94,13 @@ class StreamService:
                 return
             else:
                 try:
+                    # Convert user input to an integer and reject values outside the valid rating range.
                     rating_given = int(inp)
 
                     if rating_given > 5 or rating_given < 1:
                         raise ValueError
 
+                    # Update the running average instead of storing every individual rating.
                     if song.avg_rating == None:
                         old_av_rating = 0
                     else:
@@ -119,6 +123,7 @@ class StreamService:
         update_rate = 4
 
         def slower():
+            # Keep the playback speed and refresh rate in sync when slowing down.
             nonlocal update_rate
             update_rate -= 1
             nonlocal play_speed
@@ -129,6 +134,7 @@ class StreamService:
                 update_rate = 4
 
         def faster():
+            # Keep the playback speed and refresh rate in sync when speeding up.
             nonlocal update_rate
             update_rate += 1
             nonlocal play_speed
@@ -148,6 +154,7 @@ class StreamService:
         time_accumulation_b = 0
         try:
             while True:
+                # Measure elapsed time so playback can be advanced in small steps.
                 time_point_a = time.perf_counter()
                 time_accumulation += time_interval
                 time_accumulation_b += time_interval
@@ -161,7 +168,7 @@ class StreamService:
                     )
                     print("Press q to stop playing ⏹︎.")
                     print(
-                        f"Press left arrow key to slow downn or right arrow key to speed up. Current speed: x{speeds[abs(play_speed-8)]}"
+                        f"Press left arrow key to slow down or right arrow key to speed up. Current speed: x{speeds[abs(play_speed-8)]}"
                     )
                     time_accumulation -= speeds[update_rate]
                 while time_accumulation_b >= speeds[play_speed]:
@@ -184,6 +191,7 @@ class StreamService:
         result = {}
         index = 1
 
+        # Support three search modes: title only, artist only, or exact title + artist.
         if artist == None and keyword != None:
             for s in self.songs:
                 if s.title == keyword:
@@ -221,7 +229,7 @@ class StreamService:
             print(self.__get_formatted_songname(self.songs[i - 1]))
 
         while True:
-            inp = input("\nSelect one song and play or press q to return.")
+            inp = input("\nSelect a song and play or press q to return.")
             if inp == "q" or inp == "Q":
                 break
             else:
@@ -237,7 +245,7 @@ class StreamService:
         artist = input("Artist name: ")
         result = self.__find_song(artist=artist)
         if result == {}:
-            print("Sorry, not matching songs has been found.")
+            print("Sorry, no matching songs were found.")
             selection = input("Press any key to return.")
             return
         else:
@@ -293,6 +301,7 @@ class StreamService:
 
     def __search(self):
         os.system("cls" if os.name == "nt" else "clear")
+        # Ask the user to enter the exact search pattern so we can split title and artist reliably.
         print("Please follow this pattern: <song> by <artist>")
 
         while True:
@@ -330,11 +339,13 @@ class StreamService:
             self.__main_menu()
             while True:
                 try:
+                    # Convert the menu selection to an integer before mapping it to an action.
                     i = int(input(""))
                     break
                 except:
                     print("Please enter valid input!")
             actions = list(self.options.keys())
+            # The menu options are stored as strings, so the numeric input is mapped by position.
             action = actions[i - 1]
 
             if action == "1":
